@@ -1,5 +1,5 @@
 ---
-name: ExpertOfOrdering_ISSUE0
+name: ExpertOfOrdering_ISSUE
 about: "주문의 달인 이슈 템플릿 \U0001F4A5"
 title: "[Tag] Issue Message "
 labels: ''
