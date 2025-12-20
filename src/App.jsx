@@ -1,10 +1,10 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Onboarding from './components/Onboarding/Onboarding'
+import BgmManager from './components/setting/BgmManager'
 
 function App() {
   return (
     <>
+      <BgmManager />
       <Outlet />
     </>
   )
