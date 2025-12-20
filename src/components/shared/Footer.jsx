@@ -12,8 +12,8 @@ const Footer = ({ selectedMenu = '' }) => {
       <Link to={'/practiceLog'}>
         <PracticeLog className={selectedMenu === 'practiceLog' ? 'text-black' : 'text-[#b3b3b3]'} />
       </Link>
-      <Link to={'/'}>
-        <Setting className={selectedMenu === '' ? 'text-black' : 'text-[#b3b3b3]'} />
+      <Link to={'/setting'}>
+        <Setting className={selectedMenu === 'setting' ? 'text-black' : 'text-[#b3b3b3]'} />
       </Link>
     </div>
   )
