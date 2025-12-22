@@ -1,20 +1,31 @@
 import React from 'react'
-import AuthTitle from '@/components/shared/AuthTitle.jsx'
-import AuthInput from '@/components/shared/AuthInput.jsx'
+import { useState } from 'react'
+import AuthLayout from '@/components/Signup/SignupLayout.jsx'
+import SignupForm from '@/components/Signup/SignupForm.jsx'
+import SignupComplete from '@/components/Signup/SignupComplete.jsx'
 import AuthButton from '@/components/shared/AuthButton.jsx'
 
 function Signup() {
+  const [step, setStep] = useState('form')
+  const isFormStep = step === 'form'
+
+  const handleButtonClick = () => {
+    console.log('clicked', step)
+    if (isFormStep) {
+      setStep('complete')
+    } else {
+      console.log('로그인 페이지로 이동')
+    }
+  }
+
   return (
-    <div className='min-h-screen w-full flex justify-center'>
-      <div className='w-full min-h-screen max-w-208.5 flex flex-col items-center justify-center gap-10'>
-        <AuthTitle title='계정 회원가입' />
-        <AuthInput label='사용자 이름' type='text' placeholder='이름을 입력해 주세요' />
-        <AuthInput label='계정의 아이디' type='text' placeholder='아이디를 입력해 주세요' />
-        <AuthInput label='계정의 비밀번호' type='password' placeholder='비밀번호를 입력해 주세요' />
-        <AuthButton text='회원가입하기' />
-      </div>
-    </div>
+    <AuthLayout>
+      {isFormStep ? <SignupForm /> : <SignupComplete />}
+      <AuthButton
+        text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
+        onClick={handleButtonClick}
+      />
+    </AuthLayout>
   )
 }
-
 export default Signup
