@@ -3,23 +3,35 @@ import App from './App.jsx'
 import Onboarding from '@/components/Onboarding/Onboarding.jsx'
 import Signup from '@/components/Signup/Signup.jsx'
 import SignupComplete from '@/components/Signup/SignupComplete.jsx'
+import PracticeLogPage from './pages/PracticeLogPage.jsx'
+import SettingPage from './pages/SettingPage.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  },
-  {
-    path: '/onboarding',
-    element: <Onboarding />,
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-  },
-  {
-    path: '/signup-complete',
-    element: <SignupComplete />,
+    children: [
+      {
+        path: '/onboarding',
+        element: <Onboarding />,
+      },
+      {
+        path: '/practiceLog',
+        element: <PracticeLogPage />,
+      },
+      {
+        path: '/setting',
+        element: <SettingPage />,
+      },
+      {
+        path: '/signup',
+        element: <Signup />,
+      },
+      {
+        path: '/signup-complete',
+        element: <SignupComplete />,
+      },
+    ],
   },
 ])
 
