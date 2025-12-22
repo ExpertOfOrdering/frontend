@@ -5,6 +5,11 @@
   src: url('components/fonts/PretendardVariable.woff2');
 }
 
+@font-face {
+  font-family: 'SBAggro';
+  src: url('components/fonts/SBAggro.woff2');
+}
+
 @layer base {
   html {
     font-family: 'Pretendard';
