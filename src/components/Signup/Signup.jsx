@@ -45,6 +45,7 @@ function Signup() {
       <AuthButton
         text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
         onClick={handleButtonClick}
+        disabled={!formData.name || !formData.id || !formData.password}
       />
     </AuthLayout>
   )

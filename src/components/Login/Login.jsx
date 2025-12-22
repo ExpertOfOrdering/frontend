@@ -33,7 +33,7 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <AuthButton text='로그인하기' onClick={handleLogin} />
+      <AuthButton text='로그인하기' onClick={handleLogin} disabled={!id || !password} />
       <Link to='/signup'>
         <span className='underline cursor-pointer'>회원가입하기</span>
       </Link>
