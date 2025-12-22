@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import AuthLayout from '@/components/Signup/SignupLayout.jsx'
+import AuthLayout from '@/components/shared/Auth/AuthLayout.jsx'
 import SignupForm from '@/components/Signup/SignupForm.jsx'
 import SignupInfoBox from '@/components/Signup/SignupInfoBox.jsx'
-import AuthButton from '@/components/shared/AuthButton.jsx'
+import AuthButton from '@/components/shared/Auth/AuthButton.jsx'
 import { useNavigate } from 'react-router-dom'
 
 function Signup() {
@@ -36,7 +36,7 @@ function Signup() {
   }
 
   return (
-    <AuthLayout>
+    <AuthLayout title='계정 회원가입'>
       {isFormStep ? (
         <SignupForm formData={formData} onChange={handleInputChange} />
       ) : (
