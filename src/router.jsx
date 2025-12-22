@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import Onboarding from '@/components/Onboarding/Onboarding.jsx'
 import Signup from '@/components/Signup/Signup.jsx'
-import SignupComplete from '@/components/Signup/SignupComplete.jsx'
 import PracticeLogPage from './pages/PracticeLogPage.jsx'
 import SettingPage from './pages/SettingPage.jsx'
 
@@ -26,10 +25,6 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />,
-      },
-      {
-        path: '/signup-complete',
-        element: <SignupComplete />,
       },
     ],
   },

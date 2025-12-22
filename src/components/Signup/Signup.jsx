@@ -4,6 +4,7 @@ import AuthLayout from '@/components/Signup/SignupLayout.jsx'
 import SignupForm from '@/components/Signup/SignupForm.jsx'
 import SignupComplete from '@/components/Signup/SignupComplete.jsx'
 import AuthButton from '@/components/shared/AuthButton.jsx'
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
   const [step, setStep] = useState('form')
@@ -14,6 +15,8 @@ function Signup() {
     id: '',
     password: '',
   })
+
+  const navigate = useNavigate()
 
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({
@@ -28,6 +31,7 @@ function Signup() {
       setStep('complete')
     } else {
       console.log('로그인 페이지로 이동')
+      navigate('/login')
     }
   }
 
@@ -36,7 +40,7 @@ function Signup() {
       {isFormStep ? (
         <SignupForm formData={formData} onChange={handleInputChange} />
       ) : (
-        <SignupComplete />
+        <SignupComplete formData={formData} />
       )}
       <AuthButton
         text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
