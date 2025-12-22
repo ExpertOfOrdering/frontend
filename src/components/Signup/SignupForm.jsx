@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthInput from '@/components/shared/AuthInput.jsx'
+import AuthInput from '@/components/shared/Auth/AuthInput.jsx'
 
 function SignupForm({ formData, onChange }) {
   return (
