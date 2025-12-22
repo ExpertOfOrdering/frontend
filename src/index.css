@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: 'SBAggro';
-  src: url('components/fonts/SBAggro.woff2');
+  src: url('components/fonts/SBAggro.ttf');
 }
 
 @layer base {
