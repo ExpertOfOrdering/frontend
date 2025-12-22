@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import AuthLayout from '@/components/Signup/SignupLayout.jsx'
 import SignupForm from '@/components/Signup/SignupForm.jsx'
-import SignupComplete from '@/components/Signup/SignupComplete.jsx'
+import SignupInfoBox from '@/components/Signup/SignupInfoBox.jsx'
 import AuthButton from '@/components/shared/AuthButton.jsx'
 import { useNavigate } from 'react-router-dom'
 
@@ -40,7 +40,7 @@ function Signup() {
       {isFormStep ? (
         <SignupForm formData={formData} onChange={handleInputChange} />
       ) : (
-        <SignupComplete formData={formData} />
+        <SignupInfoBox formData={formData} />
       )}
       <AuthButton
         text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
