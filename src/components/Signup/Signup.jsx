@@ -9,6 +9,19 @@ function Signup() {
   const [step, setStep] = useState('form')
   const isFormStep = step === 'form'
 
+  const [formData, setFormData] = useState({
+    name: '',
+    id: '',
+    password: '',
+  })
+
+  const handleInputChange = (key, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [key]: value,
+    }))
+  }
+
   const handleButtonClick = () => {
     console.log('clicked', step)
     if (isFormStep) {
@@ -20,7 +33,11 @@ function Signup() {
 
   return (
     <AuthLayout>
-      {isFormStep ? <SignupForm /> : <SignupComplete />}
+      {isFormStep ? (
+        <SignupForm formData={formData} onChange={handleInputChange} />
+      ) : (
+        <SignupComplete />
+      )}
       <AuthButton
         text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
         onClick={handleButtonClick}
