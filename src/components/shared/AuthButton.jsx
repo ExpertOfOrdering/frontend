@@ -1,12 +1,11 @@
 import React from 'react'
 
-function AuthButton(text) {
+function AuthButton({ text }) {
   return (
     <>
-      <button
-        className='w-109.5 h-31.75 p-2.5 text-center color-[#FFF] bg-[#58AFFF] rounded-[1.25rem]'
-        value={text}
-      />
+      <button className='w-109.5 h-31.75 p-2.5 text-center text-white bg-[#58AFFF] rounded-[1.25rem] text-[3.75rem] font-extrabold'>
+        {text}
+      </button>
     </>
   )
 }
