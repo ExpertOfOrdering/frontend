@@ -2,8 +2,6 @@ import React from 'react'
 import PracticeSetupTitle from './PracticeSetupTitle'
 import LevelCard from './LevelCard'
 import { levelData } from './levelData'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 function LevelSelect({ selectedLevel, onSelect }) {
   return (

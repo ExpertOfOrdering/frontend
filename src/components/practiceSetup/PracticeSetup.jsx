@@ -2,10 +2,9 @@ import React from 'react'
 import PracticeSetupHeader from '@/components/practiceSetup/PracticeSetupHeader'
 import ModeSelect from '@/components/practiceSetup/ModeSelect.jsx'
 import LevelSelect from './LevelSelect'
-// import categoryData from '@/components/practiceSetup/categoryData.js';
-// import levelData from '@/components/practiceSetup/levelData.js';
 import Footer from '@/components/shared/Footer.jsx'
 import CheckSelection from '@/components/practiceSetup/CheckSelection.jsx'
+import CountOverlay from '@/components/practiceSetup/CountOverlay'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,6 +12,7 @@ function PracticeSetup() {
   const [step, setStep] = useState(1)
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedLevel, setSelectedLevel] = useState(null)
+  const [showCount, setShowCount] = useState(false)
 
   const navigate = useNavigate()
 
@@ -31,12 +31,12 @@ function PracticeSetup() {
 
   // 연습 시작
   const handleStart = () => {
-    navigate('/practice') // 연습 페이지 경로
+    setShowCount(true)
   }
 
   return (
     <div className='h-screen w-full flex justify-center overflow-hidden'>
-      <div className='w-full max-w-208.5 flex flex-col items-center'>
+      <div className='relative w-full max-w-208.5 flex flex-col items-center'>
         <PracticeSetupHeader onBack={step > 1 ? handleBack : undefined} />
         <div className='flex-1 w-full flex justify-center h-[53.31rem]'>
           {step === 1 && (
@@ -67,6 +67,14 @@ function PracticeSetup() {
           )}
         </div>
         <Footer />
+        {showCount && (
+          <CountOverlay
+            onFinish={() => {
+              setShowCount(false)
+              navigate('/login')
+            }}
+          />
+        )}
       </div>
     </div>
   )

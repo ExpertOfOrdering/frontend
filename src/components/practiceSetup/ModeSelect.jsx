@@ -2,8 +2,6 @@ import React from 'react'
 import PracticeSetupTitle from './PracticeSetupTitle'
 import ModeBox from './ModeBox'
 import { categoryData } from './categoryData'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 function ModeSelect({ selectedCategory, onSelect }) {
   return (
