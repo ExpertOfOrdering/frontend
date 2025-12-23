@@ -1,7 +1,7 @@
 import React from 'react'
 import OnbTitle from '@/components/Onboarding/OnbTitle.jsx'
 import AnswerList from '@/components/Onboarding/AnswerList.jsx'
-import onbBtn from '@/components/Onboarding/OnbBtn'
+import OnbBtn from '@/components/Onboarding/OnbBtn'
 import { onboardingData } from './onboardingData'
 import { useState } from 'react'
 
@@ -13,16 +13,18 @@ function Onboarding2() {
 
   return (
     <div>
-      <OnbTitle option={current.options} />
+      <OnbTitle title={current.question} />
       <AnswerList
         options={current.options}
         selectedOption={selectedOption}
         onSelect={setSelectedOption}
       />
 
-      <button disabled={!selectedOption} onClick={() => setStep(step + 1)}>
-        {current.buttonText}
-      </button>
+      <OnbBtn
+        text={current.buttonText}
+        disabled={!selectedOption}
+        onClick={() => setStep(step + 1)}
+      />
     </div>
   )
 }

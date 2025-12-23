@@ -1,9 +1,9 @@
 import React from 'react'
 
-function OnbTitle({ option }) {
+function OnbTitle({ title }) {
   return (
     <>
-      <span className='text-[3.125rem] font-bold'>{option.question}</span>
+      <span className='text-[3.125rem] font-bold'>{title}</span>
     </>
   )
 }
