@@ -13,6 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: '/',
+        element: <Onboarding />,
+      },
+      {
         path: '/onboarding',
         element: <Onboarding />,
       },
