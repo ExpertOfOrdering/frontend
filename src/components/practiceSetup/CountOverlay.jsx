@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import '@/styles/loader.css'
+import three from '@/assets/Three.svg'
+import two from '@/assets/Two.svg'
+import one from '@/assets/One.svg'
+import start from '@/assets/Start.svg'
 
 function CountOverlay({ onFinish }) {
   const [count, setCount] = useState(3)
 
   useEffect(() => {
-    if (count === 0) {
+    if (count === -1) {
       onFinish()
       return
     }
@@ -18,9 +21,12 @@ function CountOverlay({ onFinish }) {
   }, [count, onFinish])
 
   return (
-    <div>
-      <div>
-        <div>{count}</div>
+    <div className='absolute h-screen max-w-208.5 w-full overflow-hidden inset-0 z-50 flex items-center justify-center bg-[rgba(8,8,8,0.84)]'>
+      <div className='flex flex-col items-center gap-6'>
+        {count === 3 && <img src={three} alt='3' />}
+        {count === 2 && <img src={two} alt='2' />}
+        {count === 1 && <img src={one} alt='1' />}
+        {count === 0 && <img src={start} alt='start' />}
         <div className='loader' />
       </div>
     </div>
