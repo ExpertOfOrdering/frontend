@@ -1,15 +1,19 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import OnbTitle from '@/components/Onboarding/OnbTitle.jsx'
 import AnswerList from '@/components/Onboarding/AnswerList.jsx'
 import OnbBtn from '@/components/Onboarding/OnbBtn'
 import { onboardingData } from './onboardingData'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Onboarding2() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState([])
 
   const current = onboardingData[step]
+
+  const navigate = useNavigate()
 
   // 답변 버튼을 클릭했을 때 실행되는 함수
   const handleSelect = (option) => {
@@ -27,12 +31,18 @@ function Onboarding2() {
       // 마지막 질문이라면, 점수 계산
       const totalScore = answers.reduce((sum, answer) => sum + answer.score, 0)
       console.log('총 점수:', totalScore) // 계산된 총 점수 출력
+      navigate('/main') // 로그인 페이지로 이동
     }
   }
 
   return (
     <div className='min-h-screen w-full flex justify-center'>
-      <div className='w-full min-h-screen max-w-208.5 flex flex-col items-center justify-center'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className='w-full min-h-screen max-w-208.5 flex flex-col items-center justify-center'
+      >
         <OnbTitle title={current.question} />
         <AnswerList
           options={current.options}
@@ -41,7 +51,7 @@ function Onboarding2() {
         />
 
         <OnbBtn text={current.buttonText} disabled={!answers[step]} onClick={handleNext} />
-      </div>
+      </motion.div>
     </div>
   )
 }

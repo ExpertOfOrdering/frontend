@@ -14,7 +14,7 @@ function Login() {
   const navigate = useNavigate()
 
   const handleLogin = () => {
-    navigate('/main')
+    navigate('/onb')
   }
 
   return (
