@@ -8,6 +8,7 @@ import PracticeLogPage from './pages/PracticeLogPage.jsx'
 import SettingPage from './pages/SettingPage.jsx'
 import Onb from '@/components/onboarding/Onboarding2.jsx'
 import PracticeSetup from '@/components/practiceSetup/PracticeSetup.jsx'
+import OrderType from './components/practice/OrderType.jsx'
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/practiceSetup',
         element: <PracticeSetup />,
+      },
+      {
+        path: '/type',
+        element: <OrderType />,
       },
     ],
   },
