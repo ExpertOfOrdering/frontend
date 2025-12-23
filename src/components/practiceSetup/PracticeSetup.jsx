@@ -19,6 +19,8 @@ function PracticeSetup() {
   const handleBack = () => {
     if (step > 1) {
       setStep((prev) => prev - 1)
+    } else {
+      navigate('/main')
     }
   }
 
@@ -37,7 +39,7 @@ function PracticeSetup() {
   return (
     <div className='h-screen w-full flex justify-center overflow-hidden'>
       <div className='relative w-full max-w-208.5 flex flex-col items-center'>
-        <PracticeSetupHeader onBack={step > 1 ? handleBack : undefined} />
+        <PracticeSetupHeader onBack={handleBack} />
         <div className='flex-1 w-full flex justify-center h-[53.31rem]'>
           {step === 1 && (
             <ModeSelect
