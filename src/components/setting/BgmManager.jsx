@@ -13,16 +13,32 @@ export default function BgmManager() {
     a.volume = Number(bgm) / 100
     audioRef.current = a
 
-    console.log('[BGM] created', { volume: a.volume, muted: a.muted, src: a.src })
+    const tryPlay = async () => {
+      try {
+        await a.play()
+        console.log('[BGM] playing ✅')
 
-    a.play().catch((e) => {
-      console.log('[BGM] play blocked', e?.name, e?.message)
-    })
+        window.removeEventListener('pointerdown', tryPlay)
+        window.removeEventListener('click', tryPlay)
+        window.removeEventListener('keydown', tryPlay)
+      } catch (e) {
+        console.log('[BGM] still blocked', e?.name)
+      }
+    }
+
+    tryPlay() // 첫 시도(막힐 수 있음)
+
+    // 막히면 계속 재시도
+    window.addEventListener('pointerdown', tryPlay)
+    window.addEventListener('click', tryPlay)
+    window.addEventListener('keydown', tryPlay)
 
     return () => {
+      window.removeEventListener('pointerdown', tryPlay)
+      window.removeEventListener('click', tryPlay)
+      window.removeEventListener('keydown', tryPlay)
       a.pause()
       audioRef.current = null
-      console.log('[BGM] cleanup')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
