@@ -3,8 +3,6 @@ import PracticeSetupTitle from './PracticeSetupTitle'
 import CheckCard from './CheckCard'
 import { categoryData } from './categoryData'
 import { levelData } from './levelData'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 function CheckSelection({ selectedCategory, selectedLevel, onReset, onStart }) {
   // 선택된 카테고리 찾기

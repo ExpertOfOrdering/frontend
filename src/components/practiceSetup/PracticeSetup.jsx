@@ -2,8 +2,6 @@ import React from 'react'
 import PracticeSetupHeader from '@/components/practiceSetup/PracticeSetupHeader'
 import ModeSelect from '@/components/practiceSetup/ModeSelect.jsx'
 import LevelSelect from './LevelSelect'
-// import categoryData from '@/components/practiceSetup/categoryData.js';
-// import levelData from '@/components/practiceSetup/levelData.js';
 import Footer from '@/components/shared/Footer.jsx'
 import CheckSelection from '@/components/practiceSetup/CheckSelection.jsx'
 import { useState } from 'react'
