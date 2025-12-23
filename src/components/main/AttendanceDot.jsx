@@ -4,7 +4,7 @@ import XImg from '@/assets/XImg.svg'
 
 function AttendanceDot({ day, isChecked }) {
   return (
-    <div className='flex flex-col items-center gap-2'>
+    <div className='flex flex-col items-center gap-2 z-10'>
       <img
         src={isChecked ? CheckImg : XImg}
         alt={isChecked ? '출석' : '미출석'}
