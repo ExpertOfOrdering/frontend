@@ -1,5 +1,5 @@
 import React from 'react'
-import Answer from '@/components/Onboarding/Answer.jsx'
+import Answer from '@/components/onboarding/Answer.jsx'
 
 function AnswerList({ options, selectedOption, onSelect }) {
   return (
