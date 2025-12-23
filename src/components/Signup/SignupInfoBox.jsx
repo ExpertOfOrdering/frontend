@@ -1,5 +1,5 @@
 import React from 'react'
-import SignupInfo from '@/components/Signup/SignupInfo.jsx'
+import SignupInfo from '@/components/signup/SignupInfo.jsx'
 
 function SignupInfoBox({ formData }) {
   return (

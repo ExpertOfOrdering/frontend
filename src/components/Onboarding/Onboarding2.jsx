@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import OnbTitle from '@/components/Onboarding/OnbTitle.jsx'
-import AnswerList from '@/components/Onboarding/AnswerList.jsx'
-import OnbBtn from '@/components/Onboarding/OnbBtn'
-import { onboardingData } from './onboardingData'
+import OnbTitle from '@/components/onboarding/OnbTitle.jsx'
+import AnswerList from '@/components/onboarding/AnswerList.jsx'
+import OnbBtn from '@/components/onboarding/OnbBtn'
+import { onboardingData } from '@/components/onboarding/onboardingData.js'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

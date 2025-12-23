@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import AuthLayout from '@/components/shared/Auth/AuthLayout.jsx'
-import SignupForm from '@/components/Signup/SignupForm.jsx'
-import SignupInfoBox from '@/components/Signup/SignupInfoBox.jsx'
+import SignupForm from '@/components/signup/SignupForm.jsx'
+import SignupInfoBox from '@/components/signup/SignupInfoBox.jsx'
 import AuthButton from '@/components/shared/Auth/AuthButton.jsx'
 import { useNavigate } from 'react-router-dom'
 
