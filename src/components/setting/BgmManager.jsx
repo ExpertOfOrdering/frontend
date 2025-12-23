@@ -16,8 +16,6 @@ export default function BgmManager() {
     const tryPlay = async () => {
       try {
         await a.play()
-        console.log('[BGM] playing ✅')
-
         window.removeEventListener('pointerdown', tryPlay)
         window.removeEventListener('click', tryPlay)
         window.removeEventListener('keydown', tryPlay)
