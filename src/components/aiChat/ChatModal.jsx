@@ -14,7 +14,7 @@ const ChatModal = ({ open, closeModal }) => {
               {/* Header */}
               <div className='bg-white rounded-[0.625rem] flex relative justify-center items-center w-full h-23'>
                 <AIChatHeader />
-                <button onClick={closeModal} className='absolute right-5'>
+                <button onClick={closeModal} className='cursor-pointer absolute right-5'>
                   <X />
                 </button>
               </div>

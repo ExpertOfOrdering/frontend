@@ -11,7 +11,7 @@ const InputBox = () => {
           placeholder='질문을 입력하세요'
           className='ml-4 placeholder:text-[#9C9C9C] text-[1.625rem] font-normal focus:outline-none'
         />
-        <button className='text-[1.625rem] text-[white] font-semibold bg-[#B7B7B7] rounded-[0.625rem] py-[0.62rem] px-[0.94rem]'>
+        <button className='cursor-pointer text-[1.625rem] text-[white] font-semibold bg-[#B7B7B7] rounded-[0.625rem] py-[0.62rem] px-[0.94rem]'>
           전송
         </button>
       </div>
