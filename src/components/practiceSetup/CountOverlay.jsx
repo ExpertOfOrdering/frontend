@@ -3,6 +3,7 @@ import three from '@/assets/Three.svg'
 import two from '@/assets/Two.svg'
 import one from '@/assets/One.svg'
 import start from '@/assets/Start.svg'
+import '@/style/loader.css'
 
 function CountOverlay({ onFinish }) {
   const [count, setCount] = useState(3)
@@ -26,8 +27,11 @@ function CountOverlay({ onFinish }) {
         {count === 3 && <img src={three} alt='3' />}
         {count === 2 && <img src={two} alt='2' />}
         {count === 1 && <img src={one} alt='1' />}
-        {count === 0 && <img src={start} alt='start' />}
-        <div className='loader' />
+        {count === 0 && (
+          <>
+            <img src={start} alt='start' className='loader' />
+          </>
+        )}
       </div>
     </div>
   )
