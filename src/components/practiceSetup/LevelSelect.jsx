@@ -5,29 +5,19 @@ import { levelData } from './levelData'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function LevelSelect() {
-  const [selectedLevel, setSelectedLevel] = useState(null)
-  const navigate = useNavigate()
-
-  const handleSelect = (level) => {
-    setSelectedLevel(level)
-    navigate('/login', {
-      state: { level },
-    })
-  }
-
+function LevelSelect({ selectedLevel, onSelect }) {
   return (
-    <div className='w-full h-screen max-w-208.5 flex flex-col items-center gap-5'>
+    <div className='w-full max-w-208.5 flex flex-col items-center gap-10'>
       <PracticeSetupTitle text='연습 난이도를 선택하세요' />
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-10'>
         {levelData.map((level, index) => (
           <LevelCard
             key={index}
             label={level.label}
             bgColor={level.bgColor}
             textColor={level.textColor}
-            isSelected={selectedLevel?.id === level.id}
-            onClick={() => handleSelect(level)}
+            isSelected={selectedLevel === level.id}
+            onClick={() => onSelect(level.id)}
           />
         ))}
       </div>
