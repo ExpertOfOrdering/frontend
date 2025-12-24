@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
-import Onboarding from '@/components/onboarding/Onboarding1.jsx'
+import Onboarding from '@/components/Onboarding/Onboarding1.jsx'
 import Main from '@/components/main/Main.jsx'
-import Signup from '@/components/signup/Signup.jsx'
-import Login from '@/components/login/Login.jsx'
+import Signup from '@/components/Signup/Signup.jsx'
+import Login from '@/components/Login/Login.jsx'
 import PracticeLogPage from './pages/PracticeLogPage.jsx'
 import SettingPage from './pages/SettingPage.jsx'
-import Onb from '@/components/onboarding/Onboarding2.jsx'
+import Onb from '@/components/Onboarding/Onboarding2.jsx'
 import PracticeSetup from '@/components/practiceSetup/PracticeSetup.jsx'
 
 const router = createBrowserRouter([
