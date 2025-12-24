@@ -9,7 +9,7 @@ function SignupInfoBox({ formData }) {
           회원가입 완료
         </span>
         <SignupInfo label='이름' info={formData.name} />
-        <SignupInfo label='아이디' info={formData.id} />
+        <SignupInfo label='아이디' info={formData.username} />
         <SignupInfo label='비밀번호' info={formData.password} />
       </div>
     </>

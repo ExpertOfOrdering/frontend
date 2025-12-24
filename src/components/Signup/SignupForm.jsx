@@ -15,8 +15,8 @@ function SignupForm({ formData, onChange }) {
         label='계정의 아이디'
         type='text'
         placeholder='아이디를 입력해 주세요'
-        value={formData.id}
-        onChange={(e) => onChange('id', e.target.value)}
+        value={formData.username}
+        onChange={(e) => onChange('username', e.target.value)}
       />
       <AuthInput
         label='계정의 비밀번호'
