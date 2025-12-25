@@ -26,7 +26,7 @@ function Login() {
         password,
       })
 
-      console.log('로그인 성공:', response)
+      console.log('로그인 성공')
 
       localStorage.setItem('accessToken', response.accessToken)
       localStorage.setItem('username', response.name)
