@@ -12,11 +12,11 @@ const PracticeLogPage = () => {
     `${userName}님, 훌륭해요!`,
     `${userName}님, 계속 이렇게 가요!`,
   ]
-  const [ment, setMent] = useState(`${userName}, 함께 연습해봐요!`)
+  const [ment, setMent] = useState(`${userName}님, 함께 연습해봐요!`)
 
   useEffect(() => {
     if (!userData) {
-      setMent(`${userName}, 함께 연습해봐요!`)
+      setMent(`${userName}님, 함께 연습해봐요!`)
       return
     }
     const idx = Math.floor(Math.random() * mentList.length)
