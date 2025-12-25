@@ -5,6 +5,7 @@ import X from '@/assets/X.svg?react'
 import InputBox from './InputBox'
 
 const ChatModal = ({ open, closeModal }) => {
+  const userName = localStorage.getItem('userName')
   return (
     <>
       {open && (
@@ -22,7 +23,7 @@ const ChatModal = ({ open, closeModal }) => {
                 {/* Bubble */}
                 <div className='flex flex-col px-[1.56rem] pt-[2.12rem] gap-y-7'>
                   <div className='flex justify-start'>
-                    <AIChatBubble text='정순자님, 어떤 것이 궁금하신가요?' />
+                    <AIChatBubble text={`${userName}님, 어떤 것이 궁금하신가요?`} />
                   </div>
                   <div className='flex justify-end'>
                     <MyChatBubble text='옵션을 여러개 선택할 수 있나요' />
