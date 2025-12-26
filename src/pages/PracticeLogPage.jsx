@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import PracticeLogBubble from '@/assets/PracticeLogBubble.svg?react'
 
 const PracticeLogPage = () => {
-  const userName = localStorage.getItem('userName')
-  const [userData, setUserData] = useState(null)
+  const userName = localStorage.getItem('name')
+  const [userData, setUserData] = useState(false)
   const mentList = [
     `${userName}님, 잘하고 있어요!`,
     `${userName}님, 대단해요!`,
