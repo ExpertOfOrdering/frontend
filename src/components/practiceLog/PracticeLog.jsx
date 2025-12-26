@@ -18,11 +18,12 @@ const PracticeLog = ({ isUserData }) => {
 
         const data = await getUserLog(month)
         setUserData(data)
-        isUserData?.(data)
+        const hasLog = Number(data?.practiceCount ?? 0) > 0
+        isUserData?.(hasLog)
       } catch (e) {
         console.error(e)
         setUserData(null)
-        isUserData?.(null)
+        isUserData?.(false)
       }
     }
     fetch()
@@ -42,8 +43,8 @@ const PracticeLog = ({ isUserData }) => {
         </div>
       </div>
       <div className='flex-1 flex justify-center'>
-        {userData ? (
-          <div className='flex flex-col gap-y-15'>
+        {userData?.practiceCount && userData.practiceCount !== '0회' ? (
+          <div className='flex w-full flex-col gap-y-15'>
             <Data label='이번달 연습 횟수' data={`${userData.practiceCount}`} />
             <Data label='평균 주문 성공률' data={`${userData.avgSuccessRate}`} />
             <Data label='평균 주문 소요시간' data={`${userData.avgDuration}`} />
