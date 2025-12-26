@@ -11,7 +11,7 @@ const SettingPage = () => {
         <SettingBox />
         <Footer selectedMenu='setting' />
       </div>
-      <ChatModal open={open} closeModal={() => setOpen(false)} />
+      <ChatModal step={4} open={open} closeModal={() => setOpen(false)} />
     </div>
   )
 }
