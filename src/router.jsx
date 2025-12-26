@@ -9,6 +9,12 @@ import SettingPage from './pages/SettingPage.jsx'
 import Onb from '@/components/onboarding/Onboarding2.jsx'
 import PracticeSetup from '@/components/practiceSetup/PracticeSetup.jsx'
 import OrderType from './components/practice/OrderType.jsx'
+import Order from './components/practice/Order.jsx'
+import MenuModal from './components/practice/MenuModal.jsx'
+import CheckOrder from './components/practice/CheckOrder.jsx'
+import SelectPayment from './components/practice/PaymentModal.jsx'
+import Payment from './components/practice/CardPayment.jsx'
+import Result from './components/practice/Result.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +61,30 @@ const router = createBrowserRouter([
       {
         path: '/type',
         element: <OrderType />,
+      },
+      {
+        path: '/order',
+        element: <Order />,
+      },
+      {
+        path: '/menuModal',
+        element: <MenuModal />,
+      },
+      {
+        path: '/checkOrder',
+        element: <CheckOrder />,
+      },
+      {
+        path: '/selectPayment',
+        element: <SelectPayment />,
+      },
+      {
+        path: '/payment',
+        element: <Payment />,
+      },
+      {
+        path: '/result',
+        element: <Result />,
       },
     ],
   },
