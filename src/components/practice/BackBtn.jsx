@@ -1,5 +1,5 @@
 import React from 'react'
-import BackImg from '@/assets/BacK.svg'
+import BackImg from '@/assets/Back.svg'
 
 function BackBtn() {
   return (

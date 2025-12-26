@@ -1,6 +1,6 @@
 import React from 'react'
 import ModalHeader from './ModalHeader'
-import CardReader from '@/assets/CardReader.svg'
+import CardReader from '@/assets/CardReader.png'
 import CreditCard from '@/assets/CreditCard.svg'
 import BackBtn from './BackBtn'
 
