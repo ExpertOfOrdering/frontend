@@ -2,10 +2,10 @@ import React from 'react'
 
 function Menu({ img, name, price }) {
   return (
-    <div>
-      <img src={img} />
-      <span>{name}</span>
-      <span>{price}</span>
+    <div className='flex flex-col w-47 h-60.75 bg-white justify-center items-center rounded-[0.625rem]'>
+      <img className='w-40 h-40' src={img} />
+      <span className='text-[1.625rem] font-medium'>{name}</span>
+      <span className='text-[1.625rem] font-medium text-[#B01414]'>{price}</span>
     </div>
   )
 }
