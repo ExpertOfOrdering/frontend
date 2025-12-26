@@ -26,10 +26,11 @@ function Login() {
         password,
       })
 
-      console.log('로그인 성공')
+      console.log('로그인 성공', response)
 
-      localStorage.setItem('accessToken', response.accessToken)
-      localStorage.setItem('username', response.name)
+      localStorage.setItem('userId', String(response.userId))
+      localStorage.setItem('username', response.username ?? '')
+      localStorage.setItem('name', response.name ?? '')
 
       navigate('/onb')
     } catch (err) {
