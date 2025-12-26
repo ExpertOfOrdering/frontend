@@ -5,9 +5,13 @@ import Takeout from '@/assets/Takeout.svg'
 import Hall from '@/assets/Hall.svg'
 import { useState, useEffect } from 'react'
 import MissionOverlay from './MissionOverlay'
+import { useOrderStore } from '@/store/orderStore'
+import { useNavigate } from 'react-router-dom'
 
 function OrderType() {
   const [showMission, setShowMission] = useState(true)
+  const { setOrderType } = useOrderStore()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,6 +20,12 @@ function OrderType() {
 
     return () => clearTimeout(timer)
   }, [])
+
+  const handleOrderSelect = (type) => {
+    setOrderType(type)
+    console.log('저장됨:', type)
+    navigate('/order')
+  }
   return (
     <>
       <div className='h-screen w-full flex justify-center items-start overflow-hidden'>
@@ -24,11 +34,17 @@ function OrderType() {
           <div className='flex-1 bg-[#F49229]'>
             <Header misson='캐모마일' />
             <div className='flex justify-center items-center gap-10 p-18.5'>
-              <div className='flex flex-col items-center justify-center w-88.25 h-141.75 bg-white rounded-[1.75rem] cursor-pointer gap-10'>
+              <div
+                onClick={() => handleOrderSelect('takeout')}
+                className='flex flex-col items-center justify-center w-88.25 h-141.75 bg-white rounded-[1.75rem] cursor-pointer gap-10'
+              >
                 <img className='h-50' src={Takeout} />
                 <span className='text-[3rem] font-medium'>포장주문</span>
               </div>
-              <div className='flex flex-col items-center justify-center w-88.25 h-141.75 bg-white rounded-[1.75rem] cursor-pointer gap-10'>
+              <div
+                onClick={() => handleOrderSelect('hall')}
+                className='flex flex-col items-center justify-center w-88.25 h-141.75 bg-white rounded-[1.75rem] cursor-pointer gap-10'
+              >
                 <img className='h-50' src={Hall} />
                 <span className='text-[3rem] font-medium'>매장주문</span>
               </div>

@@ -8,8 +8,21 @@ import InActive from '@/assets/InActive.png'
 import Prev from '@/assets/Prev.png'
 import Next from '@/assets/Next.png'
 import Pay from '@/assets/Pay.png'
+import MenuModal from './MenuModal'
+import { useOrderStore } from '@/store/orderStore'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 function Order() {
+  const [showModal, setShowModal] = useState(false)
+  const navigate = useNavigate()
+  const { setSelectedMenu } = useOrderStore()
+
+  const handleMenuClick = (menu) => {
+    setSelectedMenu(menu)
+    setShowModal(true)
+  }
+
   return (
     <>
       <div className='flex flex-col justify-center items-center'>
@@ -24,14 +37,14 @@ function Order() {
             <span className='px-8 py-2 rounded-t-[0.625rem]'>푸드</span>
           </div>
           <div className='grid grid-cols-4 gap-3 px-5 bg-[#EDEDED] py-[0.94rem]'>
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
-            <Menu img={Drink} name='딸기라떼' price='3000원' />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='바닐라라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
+            <Menu img={Drink} name='딸기라떼' price='3000원' onClick={handleMenuClick} />
           </div>
           <div className='flex py-5 px-5 bg-[#EDEDED] justify-between'>
             <div>
@@ -80,6 +93,11 @@ function Order() {
           </div>
         </div>
       </div>
+      {showModal && (
+        <div className='fixed inset-0 bg-black/50 flex justify-center items-center z-50'>
+          <MenuModal onClose={() => setShowModal(false)} />
+        </div>
+      )}
     </>
   )
 }

@@ -8,13 +8,21 @@ import Ice from '@/assets/Ice.svg'
 import Default from '@/assets/Default.svg'
 import Light from '@/assets/Light.svg'
 import Deep from '@/assets/Deep.svg'
+import { useOrderStore } from '@/store/orderStore'
 
 function MenuModal() {
+  const { selectedMenu } = useOrderStore()
+  console.log(selectedMenu)
+
   return (
     <div className='flex flex-col justify-content items-center'>
       <div className='flex flex-col w-198.5 justify-center'>
         <ModalHeader text='선택하신 상품의 옵션상품을 모두 선택해주세요' />
-        <AddMenu menuImg={Drink} menuName='캐모마일' menuPrice='3000원' />
+        <AddMenu
+          menuImg={selectedMenu?.img}
+          menuName={selectedMenu?.name}
+          menuPrice={selectedMenu?.price}
+        />
         <div className='relative flex flex-col bg-[#EDEDED] px-[1.88rem] py-[1.81rem] gap-[2.81rem]'>
           <div className='flex flex-col gap-[0.94rem]'>
             <div className='flex'>
