@@ -15,7 +15,7 @@ function MenuModal() {
       <div className='flex flex-col w-198.5 justify-center'>
         <ModalHeader text='선택하신 상품의 옵션상품을 모두 선택해주세요' />
         <AddMenu menuImg={Drink} menuName='캐모마일' menuPrice='3000원' />
-        <div className='flex flex-col bg-[#EDEDED] px-[1.88rem] py-[1.81rem] gap-[2.81rem]'>
+        <div className='relative flex flex-col bg-[#EDEDED] px-[1.88rem] py-[1.81rem] gap-[2.81rem]'>
           <div className='flex flex-col gap-[0.94rem]'>
             <div className='flex'>
               <span className='text-[1.57994rem] font-semibold'>HOT/ICE</span>

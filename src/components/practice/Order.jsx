@@ -1,5 +1,6 @@
 import React from 'react'
 import PracticeHeader from './practiceHeader'
+import OrderItem from './OrderItem'
 import Menu from './Menu'
 import Drink from '@/assets/Drink.png'
 import Active from '@/assets/AciveDot.png'
@@ -57,7 +58,9 @@ function Order() {
                 <span>수량</span>
                 <span>가격</span>
               </div>
-              <div className='w-120.5 h-48.75 rounded-[0.625rem] bg-white'></div>
+              <div className='w-120.5 h-48.75 rounded-[0.625rem] bg-white'>
+                <OrderItem />
+              </div>
             </div>
             <div className='flex flex-col gap-2 ml-5'>
               <div className='w-71.75 h-[3.66rem] border-b-2'></div>
