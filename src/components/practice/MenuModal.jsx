@@ -63,7 +63,7 @@ function MenuModal({ onClose }) {
   }, [])
 
   return (
-    <div className='flex flex-col justify-content items-center fixed inset-0 z-50'>
+    <div className='flex flex-col justify-end items-center fixed inset-0 z-50 mb-10'>
       <div className='flex flex-col w-198.5 justify-center'>
         <ModalHeader text='선택하신 상품의 옵션상품을 모두 선택해주세요' onClose={handleCancel} />
         <AddMenu

@@ -12,28 +12,37 @@ import { useNavigate } from 'react-router-dom'
 import { useInactivityTimer } from './useInactivityTimer'
 import ChatModal from '../aiChat/ChatModal'
 
-function OrderType({ level = '초보' }) {
+function OrderType() {
   useInactivityTimer()
 
   const [showMission, setShowMission] = useState(true)
   const [open, setOpen] = useState(false)
 
-  const { mission, setMission, setOrderType, startPracticeTimer, setPracticeStep, showAiButton } =
+  const { mission, setMission, setOrderType, startPracticeTimer, setPracticeStep, level } =
     useOrderStore()
+  const numericLevel = Number(level)
+
+  const levelTextMap = {
+    1: '초보',
+    2: '중수',
+    3: '달인',
+  }
+  const levelKey = levelTextMap[numericLevel]
 
   const navigate = useNavigate()
 
   useEffect(() => {
     setPracticeStep(1)
     startPracticeTimer()
-    if (!mission) {
-      const pick = missionData[level][Math.floor(Math.random() * missionData[level].length)]
+    if (!mission && missionData[levelKey]) {
+      const options = missionData[levelKey]
+      const pick = options[Math.floor(Math.random() * options.length)]
       setMission(pick)
     }
 
     const timer = setTimeout(() => setShowMission(false), 5000)
     return () => clearTimeout(timer)
-  }, [])
+  }, [numericLevel])
 
   const handleOrderSelect = (type) => {
     setOrderType(type)
@@ -42,13 +51,13 @@ function OrderType({ level = '초보' }) {
   }
   return (
     <>
-      <div className='min-h-screen w-full flex justify-center items-start'>
+      <div className='min-h-screen w-full flex justify-center'>
         <div className='relative w-full max-w-208.5 flex flex-col min-h-screen'>
           {showMission && mission && <MissionOverlay mission={mission} />}
 
-          <div className='flex-1 bg-[#F49229] flex-col'>
+          <div className='flex-1 bg-[#F49229] flex-col items-center '>
             <Header />
-            <div className='flex justify-center items-center gap-10 p-18.5'>
+            <div className='flex justify-center items-center gap-10 py-27'>
               <div
                 onClick={() => handleOrderSelect('takeout')}
                 className='flex flex-col items-center justify-center w-88.25 h-141.75 bg-white rounded-[1.75rem] cursor-pointer gap-10'

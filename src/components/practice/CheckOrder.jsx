@@ -17,13 +17,13 @@ function CheckOrder({ onClose, onPay, onBack }) {
     setPracticeStep(4)
   }, [])
   return (
-    <div className='flex flex-col items-center bg-white rounded-[0.625rem]'>
+    <div className='flex flex-col items-center bg-white rounded-[0.625rem] mt-42'>
       <ModalHeader onClose={onClose} text='주문 세부내역을 다시 한 번 확인해주세요' />
       <div className='flex flex-col items-center w-198.5 h-148 overflow-y-scroll'>
         {orders.map((item, i) => (
           <OrderItemDetail key={i} item={item} index={i} />
         ))}
-        <div className='flex w-184.75 h-26.25 rounded-[0.625rem] border-2 justify-center gap-[4.38rem] mt-70'>
+        <div className='fixed flex w-184.75 h-26.25 rounded-[0.625rem] border-2 justify-center gap-[4.38rem] mt-110'>
           <span className='flex font-medium text-[2.1875rem] gap-[1.56rem] items-center'>
             선택한 상품<span className='font-semibold text-[#E97800]'>{getTotalCount()}개</span>
           </span>

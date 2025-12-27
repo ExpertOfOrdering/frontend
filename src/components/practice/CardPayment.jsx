@@ -36,42 +36,44 @@ function CardPayment({ onClose, onBack, onSuccess }) {
   }, [])
 
   return (
-    <div className='flex flex-col bg-[#EDEDED] w-198.5 rounded-[0.625rem]'>
-      <ModalHeader onClose={onClose} text='결제를 진행해주세요' />
-      <p className='text-[2.1875rem] font-medium px-5 py-5'>
-        총 결제금액{' '}
-        <span className='text-[2.1875rem] font-semibold text-[#E97800]'>{getTotalPrice()}원</span>
-      </p>
-      <div className='flex'>
-        <div className='relative flex flex-col w-188 h-121 items-center justify-start gap-[2.33rem] bg-white rounded-[0.625rem] pt-5'>
-          <span className='font-semibold text-[2.23088rem] bg-[#F5F5F5]'>
-            카드를 리더기에 드래그해주세요
-          </span>
-          <img className='' src={CardReader} />
-          <img
-            src={CreditCard}
-            onClick={handleCardClick}
-            className='cursor-pointer'
-            style={{
-              position: 'absolute',
-              top: isInserted ? '68%' : '80%',
-              left: '50%',
-              transform: 'translateX(-50%) translateY(-70%)',
-              transition: 'top 0.6s ease',
-            }}
-          />
+    <div className='w-full h-screen flex justify-center overflow-hidden'>
+      <div className='relative w-full h-234 max-w-198.5 flex flex-col mt-51 bg-[#EDEDED] rounded-[0.625rem]'>
+        <ModalHeader onClose={onClose} text='결제를 진행해주세요' />
+        <p className='text-[2.1875rem] font-medium px-5 py-5'>
+          총 결제금액{' '}
+          <span className='text-[2.1875rem] font-semibold text-[#E97800]'>{getTotalPrice()}원</span>
+        </p>
+        <div className='flex justify-center'>
+          <div className='relative flex flex-col w-188 h-121 items-center justify-start gap-[2.33rem] bg-white rounded-[0.625rem] pt-5'>
+            <span className='font-semibold text-[2.23088rem] bg-[#F5F5F5]'>
+              카드를 리더기에 드래그해주세요
+            </span>
+            <img className='' src={CardReader} />
+            <img
+              src={CreditCard}
+              onClick={handleCardClick}
+              className='cursor-pointer'
+              style={{
+                position: 'absolute',
+                top: isInserted ? '68%' : '80%',
+                left: '50%',
+                transform: 'translateX(-50%) translateY(-70%)',
+                transition: 'top 0.6s ease',
+              }}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className='flex px-5 py-5'>
-        <BackBtn onClick={onBack} />
+        <div className='flex px-5 py-5'>
+          <BackBtn onClick={onBack} />
+        </div>
+        <AiButtonFixed
+          onClick={(step) => {
+            console.log('현재 STEP:', step)
+          }}
+        />
       </div>
       {showSuccessView && <Result />}
-      <AiButtonFixed
-        onClick={(step) => {
-          console.log('현재 STEP:', step)
-        }}
-      />
     </div>
   )
 }
