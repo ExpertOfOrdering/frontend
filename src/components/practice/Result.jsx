@@ -3,18 +3,46 @@ import OrderResult from '@/assets/OrderResult.png'
 import ViewIncorrect from './ViewIncorrect'
 import { useNavigate } from 'react-router-dom'
 import { useOrderStore } from '@/store/orderStore'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import resultSound from '@/audio/success.mp3'
+import axios from 'axios'
+
+const baseURL = import.meta.env.VITE_API_BASE_URL
 
 function Result() {
   const [showIncorrect, setShowIncorrect] = useState(false)
   const { practiceTime } = useOrderStore()
   const { accuracy } = useOrderStore()
+
   const navigate = useNavigate()
 
   const formatTime = (ms) => {
     const sec = Math.floor(ms / 1000)
     const min = Math.floor(sec / 60)
     return `${min}분 ${sec % 60}초`
+  }
+
+  useEffect(() => {
+    const sound = new Audio(resultSound)
+    sound.play().catch((err) => console.log('오디오 재생 실패:', err))
+  }, [])
+
+  const savePracticeLog = async () => {
+    const userId = localStorage.getItem('userId')
+    const month = new Date().getMonth() + 1
+    const durationSec = Math.floor(practiceTime / 1000)
+
+    try {
+      await axios.post(`${baseURL}/api/practice-logs`, {
+        userId: Number(userId),
+        month,
+        durationSec,
+        accuracy,
+      })
+      console.log('연습 기록 저장 완료!')
+    } catch (error) {
+      console.error('연습 저장 실패:', error)
+    }
   }
 
   const hasMistake = accuracy < 100
@@ -53,6 +81,7 @@ function Result() {
             <button
               className='w-71.75 h-20.5 text-[2.1875rem] rounded-[0.625rem] bg-[#CCC] cursor-pointer'
               onClick={() => {
+                savePracticeLog()
                 useOrderStore.getState().reset()
                 navigate('/main')
               }}

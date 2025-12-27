@@ -18,7 +18,7 @@ export const useInactivityTimer = (time = 20000) => {
   useEffect(() => {
     reset()
 
-    const events = ['click', 'touchstart', 'mousemove']
+    const events = ['click', 'touchstart']
     events.forEach((e) => window.addEventListener(e, reset))
 
     return () => {

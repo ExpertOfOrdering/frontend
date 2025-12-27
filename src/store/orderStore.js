@@ -29,21 +29,66 @@ export const useOrderStore = create((set, get) => ({
       return { orders: updated }
     }),
   setAccuracy: (accuracy) => set({ accuracy }),
-  calculateAccuracy: () => {
-    const { mission, orders, orderType } = get()
-    if (!mission) return 0
+  parseMission: () => {
+    const missionStr = get().mission
+    if (!missionStr) return null
 
-    const order = orders[0]
-    if (!order) return 0
+    const temp = missionStr.includes('뜨거운') ? 'HOT' : 'ICE'
+    const name = missionStr.match(/\[(.*?)\]/)?.[1] || ''
+    const quantity = Number(missionStr.match(/(\d+)개/)?.[1]) || 1
+    const place = missionStr.includes('포장') ? 'takeout' : 'here'
+    const taste = missionStr.includes('진하게')
+      ? '진하게'
+      : missionStr.includes('연하게')
+        ? '연하게'
+        : '기본'
+
+    return { temp, name, quantity, place, taste }
+  },
+
+  calculateAccuracy: () => {
+    const { orders, orderType, mission } = get()
+    const order = orders?.[0]
+    if (!mission || !order) return 0
+
+    const missionText = typeof mission === 'string' ? mission : mission?.content || ''
+
+    const temp = missionText.includes('뜨거운')
+      ? 'HOT'
+      : missionText.includes('차가운')
+        ? 'ICE'
+        : null
+
+    const nameMatch = missionText.match(/\[(.*?)\]/)
+    const name = nameMatch ? nameMatch[1] : null
+
+    const qtyMatch = missionText.match(/(\d+)개/)
+    const quantity = qtyMatch ? Number(qtyMatch[1]) : null
+
+    const place = missionText.includes('포장')
+      ? '포장주문'
+      : missionText.includes('매장')
+        ? '매장주문'
+        : null
 
     let score = 0
-    if (order.hotIce === mission.temp) score += 25
-    if (order.name === mission.name) score += 25
-    if (order.quantity === mission.quantity) score += 25
-    if (orderType === mission.place) score += 25
+    if (order.hotIce === temp) score += 25
+    if (order.name === name) score += 25
+    if (order.quantity === quantity) score += 25
+    if (orderType === place) score += 25
 
     set({ accuracy: score })
     return score
+  },
+
+  finishPractice: () => {
+    const start = get().practiceStart
+    if (!start) return
+
+    const timeTaken = Date.now() - start
+    set({ practiceTime: timeTaken, practiceStart: null, isFinished: true })
+
+    get().calculateAccuracy()
   },
   setSelectedMenu: (menu) => set({ selectedMenu: menu }),
   setSelectedHotIce: (value) => set({ selectedHotIce: value }),
@@ -103,12 +148,5 @@ export const useOrderStore = create((set, get) => ({
     const start = get().practiceStart
     if (!start) return 0
     return Date.now() - start
-  },
-
-  finishPractice: () => {
-    const start = get().practiceStart
-    if (!start) return
-    const timeTaken = Date.now() - start
-    set({ practiceTime: timeTaken, practiceStart: null, isFinished: true })
   },
 }))
