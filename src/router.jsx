@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
-import Onboarding from '@/components/onboarding/Onboarding1.jsx'
+import Onboarding from './components/onboarding/Onboarding1.jsx'
 import Main from '@/components/main/Main.jsx'
 import Signup from '@/components/signup/Signup.jsx'
 import Login from '@/components/Login/Login.jsx'
