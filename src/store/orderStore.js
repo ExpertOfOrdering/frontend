@@ -13,7 +13,9 @@ export const useOrderStore = create((set, get) => ({
   practiceTime: 0,
   practiceStep: 0,
   showAiButton: false,
+  level: 1,
 
+  setLevel: (level) => set({ level }),
   setMission: (mission) => set({ mission }),
   setOrderType: (type) => set({ orderType: type }),
   setPracticeStep: (step) => set({ practiceStep: step }),

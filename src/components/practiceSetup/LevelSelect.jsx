@@ -4,8 +4,16 @@ import LevelCard from './LevelCard'
 import { levelData } from './levelData'
 import { useState, useEffect } from 'react'
 import { getCurrentDifficulty } from '@/apis/level'
+import { useOrderStore } from '@/store/orderStore'
 
 function LevelSelect({ selectedLevel, onSelect }) {
+  const { setLevel } = useOrderStore()
+
+  const handleClick = (id) => {
+    setLevel(id)
+    onSelect(id)
+  }
+
   const [recommended, setRecommended] = useState(null)
 
   useEffect(() => {
@@ -30,7 +38,7 @@ function LevelSelect({ selectedLevel, onSelect }) {
             textColor={level.textColor}
             isSelected={selectedLevel === level.id}
             isRecommended={recommended === level.id}
-            onClick={() => onSelect(level.id)}
+            onClick={() => handleClick(level.id)}
           />
         ))}
       </div>

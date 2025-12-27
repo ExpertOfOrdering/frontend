@@ -12,28 +12,37 @@ import { useNavigate } from 'react-router-dom'
 import { useInactivityTimer } from './useInactivityTimer'
 import ChatModal from '../aiChat/ChatModal'
 
-function OrderType({ level = '초보' }) {
+function OrderType() {
   useInactivityTimer()
 
   const [showMission, setShowMission] = useState(true)
   const [open, setOpen] = useState(false)
 
-  const { mission, setMission, setOrderType, startPracticeTimer, setPracticeStep, showAiButton } =
+  const { mission, setMission, setOrderType, startPracticeTimer, setPracticeStep, level } =
     useOrderStore()
+  const numericLevel = Number(level)
+
+  const levelTextMap = {
+    1: '초보',
+    2: '중수',
+    3: '달인',
+  }
+  const levelKey = levelTextMap[numericLevel]
 
   const navigate = useNavigate()
 
   useEffect(() => {
     setPracticeStep(1)
     startPracticeTimer()
-    if (!mission) {
-      const pick = missionData[level][Math.floor(Math.random() * missionData[level].length)]
+    if (!mission && missionData[levelKey]) {
+      const options = missionData[levelKey]
+      const pick = options[Math.floor(Math.random() * options.length)]
       setMission(pick)
     }
 
     const timer = setTimeout(() => setShowMission(false), 5000)
     return () => clearTimeout(timer)
-  }, [])
+  }, [numericLevel])
 
   const handleOrderSelect = (type) => {
     setOrderType(type)
