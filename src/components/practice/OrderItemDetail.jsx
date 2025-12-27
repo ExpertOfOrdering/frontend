@@ -1,19 +1,25 @@
 import React from 'react'
 
-function OrderItemDetail() {
+function OrderItemDetail({ item, index }) {
   return (
     <div>
-      <div className='flex justify-content py-4'>
-        <div className='flex gap-5 pr-50 items-center'>
-          <div className='flex px-3.5 text-[1.70769rem] font-bold text-white bg-[rgb(244,146,41)] text-center rounded-[100rem]'>
-            1
+      <div className='flex py-4 gap-4'>
+        <div className='flex w-130 items-center gap-3'>
+          <div className='flex px-3.5 text-[1.70769rem] font-bold text-white bg-[rgb(244,146,41)] rounded-[100rem]'>
+            {index + 1}
           </div>
-          <span className='font-medium text-[2.01813rem]'>캐모마일</span>
-          <span className='text-[#8C8C8C] font-medium text-[2.01813rem]'>· HOT · 기본</span>
+          <span className='font-medium text-[2.01813rem]'>{item.name}</span>
+          <span className='text-[#8C8C8C] font-medium text-[2.01813rem]'>
+            · {item.hotIce} · {item.taste}
+          </span>
         </div>
-        <div className='flex gap-10 '>
-          <span className='text-[#F49229] font-bold text-[2rem]'>1개</span>
-          <span className='text-[#B01414] font-medium text-[2.01813rem]'>3000원</span>
+        <div className='flex items-center'>
+          <span className='text-[#F49229] font-bold text-[2rem] w-15 text-right'>
+            {item.quantity}개
+          </span>
+          <span className='text-[#B01414] font-medium text-[2.01813rem] text-right w-40'>
+            {item.quantity * item.price}원
+          </span>
         </div>
       </div>
     </div>
