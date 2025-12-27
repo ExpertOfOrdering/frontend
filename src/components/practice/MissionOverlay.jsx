@@ -10,7 +10,7 @@ function MissionOverlay({ mission }) {
           도전 과제
           <img src={Star} />
         </span>
-        <span className='flex items-center justify-center w-3xl h-41.75 text-[2.8125rem] font-semibold text-[#3474D3] bg-[#F2F2F2] rounded-[1.5625rem]'>
+        <span className='flex text-center items-center justify-center w-3xl h-41.75 text-[2.8125rem] font-semibold text-[#3474D3] bg-[#F2F2F2] rounded-[1.5625rem]'>
           {mission}
         </span>
       </div>

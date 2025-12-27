@@ -14,6 +14,7 @@ export const useOrderStore = create((set, get) => ({
   practiceStep: 0,
   showAiButton: false,
   level: 1,
+  isFinished: false,
 
   setLevel: (level) => set({ level }),
   setMission: (mission) => set({ mission }),
@@ -71,6 +72,7 @@ export const useOrderStore = create((set, get) => ({
 
   reset: () =>
     set({
+      isFinished: false,
       mission: null,
       orders: [],
       orderType: null,
@@ -107,6 +109,6 @@ export const useOrderStore = create((set, get) => ({
     const start = get().practiceStart
     if (!start) return
     const timeTaken = Date.now() - start
-    set({ practiceTime: timeTaken, practiceStart: null })
+    set({ practiceTime: timeTaken, practiceStart: null, isFinished: true })
   },
 }))
