@@ -11,8 +11,9 @@ export default function AiButtonFixed({ onClick }) {
       src={AiBtn}
       onClick={() => onClick?.(practiceStep)}
       className='
+      ai-btn
         absolute
-        top-[15%] right-[5%]
+        top-[10%] right-[5%]
         w-34 h-34
         z-[9999]
         cursor-pointer
