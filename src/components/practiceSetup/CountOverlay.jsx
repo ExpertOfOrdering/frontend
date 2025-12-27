@@ -4,9 +4,17 @@ import two from '@/assets/Two.svg'
 import one from '@/assets/One.svg'
 import start from '@/assets/Start.svg'
 import '@/style/loader.css'
+import countdownSound from '@/audio/countdown.mp3'
 
 function CountOverlay({ onFinish }) {
   const [count, setCount] = useState(3)
+
+  useEffect(() => {
+    const sound = new Audio(countdownSound)
+    sound.play().catch((err) => {
+      console.log('오디오 재생 실패:', err)
+    })
+  }, [])
 
   useEffect(() => {
     if (count === -1) {
