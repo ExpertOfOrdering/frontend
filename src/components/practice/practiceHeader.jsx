@@ -1,7 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useOrderStore } from '@/store/orderStore'
 
-function PracticeHeader({ misson }) {
+function PracticeHeader() {
+  const { mission } = useOrderStore()
+
   const navigate = useNavigate()
   return (
     <div className='flex flex-col items-center'>
@@ -41,7 +44,7 @@ function PracticeHeader({ misson }) {
           z-10
         '
       >
-        <span className='text-[2.1875rem] font-bold text-[#3474D3]'>{misson}</span>
+        <span className='text-[2.1875rem] font-bold text-[#3474D3]'>{mission}</span>
       </div>
     </div>
   )
