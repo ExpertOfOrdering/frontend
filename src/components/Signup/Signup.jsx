@@ -6,17 +6,22 @@ import SignupInfoBox from '@/components/signup/SignupInfoBox.jsx'
 import AuthButton from '@/components/shared/Auth/AuthButton.jsx'
 import { useNavigate } from 'react-router-dom'
 
+import { signup } from '@/apis/auth.js'
+
 function Signup() {
   const [step, setStep] = useState('form')
   const isFormStep = step === 'form'
 
   const [formData, setFormData] = useState({
     name: '',
-    id: '',
+    username: '',
     password: '',
   })
 
   const navigate = useNavigate()
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleInputChange = (key, value) => {
     setFormData((prev) => ({
@@ -25,12 +30,25 @@ function Signup() {
     }))
   }
 
-  const handleButtonClick = () => {
-    console.log('clicked', step)
+  const handleButtonClick = async () => {
+    console.log('버튼 클릭됨')
     if (isFormStep) {
-      setStep('complete')
+      try {
+        setLoading(true)
+        setError(null)
+
+        const response = await signup(formData)
+
+        console.log('회원가입 성공 응답:', response)
+
+        setStep('complete')
+      } catch (err) {
+        console.error('회원가입 실패:', err)
+        setError(err.response?.data?.message || '회원가입 실패')
+      } finally {
+        setLoading(false)
+      }
     } else {
-      console.log('로그인 페이지로 이동')
       navigate('/login')
     }
   }
@@ -43,9 +61,9 @@ function Signup() {
         <SignupInfoBox formData={formData} />
       )}
       <AuthButton
-        text={isFormStep ? '회원가입하기' : '로그인하러 가기'}
+        text={loading ? '회원가입 중...' : isFormStep ? '회원가입하기' : '로그인하러 가기'}
         onClick={handleButtonClick}
-        disabled={!formData.name || !formData.id || !formData.password}
+        disabled={loading || !formData.name || !formData.username || !formData.password}
       />
     </AuthLayout>
   )
