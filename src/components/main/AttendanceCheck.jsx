@@ -17,7 +17,7 @@ function AttendanceCheck({ day }) {
           연속 {day}일째 출석이에요!
         </span>
       </div>
-      <div className='absolute left-8 right-8 top-50 left-30 w-[35.49494rem] h-[1.34494rem] bg-[#D9D9D9]' />
+      <div className='absolute right-8 top-50 left-30 w-[35.49494rem] h-[1.34494rem] bg-[#D9D9D9]' />
       <div className='flex items-center justify-center gap-10'>
         {attendance.map((item) => (
           <AttendanceDot key={item.day} day={item.day} isChecked={item.checked} />
