@@ -6,6 +6,7 @@ import OnbBtn from '@/components/onboarding/OnbBtn'
 import { onboardingData } from '@/components/onboarding/onboardingData.js'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { setInitialDifficulty, getCurrentDifficulty } from '@/apis/level'
 
 function Onboarding2() {
   const [step, setStep] = useState(0)
@@ -23,7 +24,7 @@ function Onboarding2() {
   }
 
   // '다음 / 완료' 버튼을 눌렀을 때 실행되는 함수
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < onboardingData.length - 1) {
       // 아직 마지막 질문이 아니라면
       setStep(step + 1) // 다음 질문으로 이동
@@ -31,7 +32,31 @@ function Onboarding2() {
       // 마지막 질문이라면, 점수 계산
       const totalScore = answers.reduce((sum, answer) => sum + answer.score, 0)
       console.log('총 점수:', totalScore) // 계산된 총 점수 출력
-      navigate('/main') // 로그인 페이지로 이동
+
+      const userId = localStorage.getItem('userId')
+
+      try {
+        // 먼저 난이도 생성
+        await setInitialDifficulty({ userId, score: totalScore })
+        console.log('최초 난이도 저장 성공')
+      } catch (err) {
+        if (err.response?.status === 409) {
+          console.log('이미 난이도 설정된 유저 → GET으로 확인')
+        } else {
+          console.error('예상치 못한 오류', err)
+          return
+        }
+      }
+
+      // 현재 난이도 확인
+      try {
+        const difficulty = await getCurrentDifficulty(userId)
+        console.log('현재 난이도:', difficulty)
+      } catch (err) {
+        console.log('난이도 조회 실패', err)
+      }
+
+      navigate('/main')
     }
   }
 

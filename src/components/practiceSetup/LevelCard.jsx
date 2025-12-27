@@ -1,8 +1,8 @@
 import React from 'react'
 
-function LevelCard({ label, bgColor, textColor, isSelected, onClick }) {
+function LevelCard({ label, bgColor, textColor, isSelected, onClick, isRecommended }) {
   return (
-    <div>
+    <div className='relative w-fit'>
       <button
         onClick={onClick}
         className={`
@@ -14,10 +14,15 @@ function LevelCard({ label, bgColor, textColor, isSelected, onClick }) {
         ${bgColor}
         ${textColor}
 
-        ${isSelected ? 'opacity-100' : 'opacity-60'}`}
+        ${isSelected ? 'opacity-100' : 'opacity-100'}`}
       >
         {label}
       </button>
+      {isRecommended && (
+        <span className='absolute -right-8 -top-3 bg-red-500 text-white text-[2rem] px-4 py-1 rounded-full font-bold'>
+          추천
+        </span>
+      )}
     </div>
   )
 }

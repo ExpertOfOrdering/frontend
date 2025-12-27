@@ -8,17 +8,26 @@ function ModeSelect({ selectedCategory, onSelect }) {
     <div className='w-full max-w-208.5 flex flex-col items-center gap-5'>
       <PracticeSetupTitle text='연습 모드를 선택하세요' />
       <div className='grid grid-cols-2 gap-[1.88rem]'>
-        {categoryData.map((category, index) => (
-          <ModeBox
-            key={index}
-            img={category.img}
-            name={category.label}
-            bgColor={category.bgColor}
-            textColor={category.textColor}
-            isSelected={selectedCategory === category.id}
-            onClick={() => onSelect(category.id)}
-          />
-        ))}
+        {categoryData.map((category, index) => {
+          const isBlocked = category.id !== 1
+          return (
+            <ModeBox
+              key={index}
+              img={category.img}
+              name={category.label}
+              bgColor={category.bgColor}
+              disabled={isBlocked}
+              textColor={category.textColor}
+              isSelected={selectedCategory === category.id}
+              onClick={() => {
+                if (isBlocked) {
+                  return
+                }
+                onSelect(category.id)
+              }}
+            />
+          )
+        })}
       </div>
     </div>
   )
