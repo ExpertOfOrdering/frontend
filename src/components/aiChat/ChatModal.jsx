@@ -67,6 +67,20 @@ const ChatModal = ({ open, closeModal, step }) => {
     webSocket.current.send(JSON.stringify({ sender: 'me', text, clientId: loadingId }))
   }
 
+  const handleClose = () => {
+    try {
+      if (webSocket.current && webSocket.current.readyState !== WebSocket.CLOSED) {
+        webSocket.current.close(1000, 'modal closed')
+      }
+    } catch (e) {
+      console.log(e)
+    } finally {
+      webSocket.current = null
+      didConnect.current = false
+      closeModal?.()
+    }
+  }
+
   const TypingDots = () => (
     <span className='inline-flex items-end gap-[0.64rem]'>
       <span className='w-[0.9rem] h-[0.9rem] rounded-full bg-[#58AFFF] animate-bounce [animation-delay:0ms]' />
@@ -93,7 +107,7 @@ const ChatModal = ({ open, closeModal, step }) => {
               {/* Header */}
               <div className='bg-white rounded-[0.625rem] flex relative justify-center items-center w-full h-23'>
                 <AIChatHeader />
-                <button onClick={closeModal} className='cursor-pointer absolute right-5'>
+                <button onClick={handleClose} className='cursor-pointer absolute right-5'>
                   <X />
                 </button>
               </div>
