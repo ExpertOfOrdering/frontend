@@ -1,7 +1,11 @@
 import React from 'react'
 import X from '@/assets/ResultX.svg'
+import { useOrderStore } from '@/store/orderStore'
 
-function ViewIncorrect() {
+function ViewIncorrect({ onClose }) {
+  const { mission, orders, orderType } = useOrderStore()
+  const order = orders[0]
+
   return (
     <>
       <div className='flex flex-col justify-center w-196.5 h-85 rounded-[0.625rem] bg-white'>
@@ -10,7 +14,7 @@ function ViewIncorrect() {
             <span className='flex justify-center font-semibold text-[2.8125rem] pl-74 pr-60 py-3'>
               오답보기
             </span>
-            <button className=''>
+            <button className='cursor-pointer' onClick={onClose}>
               <img className='w-14 h-14' src={X} />
             </button>
           </div>
@@ -18,11 +22,14 @@ function ViewIncorrect() {
         <div className='flex flex-col text-[2.5rem] font-semibold gap-8 px-8 py-8'>
           <div className='flex items-center gap-5'>
             <span className='px-6 py-2 bg-[#E9E9E9] rounded-[0.625rem]'>미션</span>
-            <span>뜨거운 캐모마일 1개 포장주문</span>
+            <span>{mission}</span>
           </div>
           <div className='flex items-center gap-5'>
             <span className='px-6 py-2 bg-[#F7CCCC] rounded-[0.625rem]'>결과</span>
-            <span>차가운 캐모마일 1개 매장주문</span>
+            <span>
+              {order.hotIce} [{order.name}] {order.quantity}개{' '}
+              {orderType === 'takeout' ? '포장주문' : '매장주문'}
+            </span>
           </div>
         </div>
       </div>

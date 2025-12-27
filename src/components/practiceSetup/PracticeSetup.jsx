@@ -73,7 +73,7 @@ function PracticeSetup() {
           <CountOverlay
             onFinish={() => {
               setShowCount(false)
-              navigate('/login')
+              navigate('/type')
             }}
           />
         )}
