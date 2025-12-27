@@ -16,15 +16,18 @@ import { menuData } from './menuData'
 import { useInactivityTimer } from './useInactivityTimer'
 import { useOrderStore } from '@/store/orderStore'
 import { useState, useEffect } from 'react'
+import ChatModal from '../aiChat/ChatModal'
 
 function Order() {
   const [modalType, setModalType] = useState(null)
   const [offset, setOffset] = useState(0)
   const ITEMS = 8
   const page = Math.floor(offset / 8)
+  const [open, setOpen] = useState(false)
 
   const [activeCategory, setActiveCategory] = useState('추천메뉴')
-  const { setSelectedMenu, orders, getTotalCount, getTotalPrice, setPracticeStep } = useOrderStore()
+  const { setSelectedMenu, orders, getTotalCount, getTotalPrice, setPracticeStep, practiceStep } =
+    useOrderStore()
 
   const categories = ['추천메뉴', '커피', '디카페인', '음료', '티', '푸드']
 
@@ -41,8 +44,11 @@ function Order() {
   }
 
   useEffect(() => {
-    setPracticeStep(2)
-  }, [])
+    if (modalType === 'menu') setPracticeStep(3)
+    else if (modalType === 'check') setPracticeStep(4)
+    else if (modalType === 'pay') setPracticeStep(5)
+    else setPracticeStep(2)
+  }, [modalType, setPracticeStep])
 
   useInactivityTimer()
 
@@ -200,8 +206,10 @@ function Order() {
       <AiButtonFixed
         onClick={(step) => {
           console.log('현재 STEP:', step)
+          setOpen(true)
         }}
       />
+      <ChatModal step={practiceStep} open={open} closeModal={() => setOpen(false)} />
     </>
   )
 }

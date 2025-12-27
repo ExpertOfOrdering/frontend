@@ -10,11 +10,13 @@ import MissionOverlay from './MissionOverlay'
 import { useOrderStore } from '@/store/orderStore'
 import { useNavigate } from 'react-router-dom'
 import { useInactivityTimer } from './useInactivityTimer'
+import ChatModal from '../aiChat/ChatModal'
 
 function OrderType({ level = '초보' }) {
   useInactivityTimer()
 
   const [showMission, setShowMission] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const { mission, setMission, setOrderType, startPracticeTimer, setPracticeStep, showAiButton } =
     useOrderStore()
@@ -40,7 +42,7 @@ function OrderType({ level = '초보' }) {
   }
   return (
     <>
-      <div className='min-h-screen w-full flex justify-center items-start overflow-hidden'>
+      <div className='min-h-screen w-full flex justify-center items-start'>
         <div className='relative w-full max-w-208.5 flex flex-col min-h-screen'>
           {showMission && mission && <MissionOverlay mission={mission} />}
 
@@ -66,13 +68,13 @@ function OrderType({ level = '초보' }) {
           </div>
         </div>
       </div>
-      {showAiButton && (
-        <AiButtonFixed
-          onClick={(step) => {
-            console.log('현재 STEP:', step)
-          }}
-        />
-      )}
+      <AiButtonFixed
+        onClick={() => {
+          setOpen(true)
+          console.log(open)
+        }}
+      />
+      <ChatModal step={1} open={open} closeModal={() => setOpen(false)} />
     </>
   )
 }
