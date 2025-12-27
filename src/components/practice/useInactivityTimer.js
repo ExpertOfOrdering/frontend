@@ -5,7 +5,9 @@ export const useInactivityTimer = (time = 20000) => {
   const { setShowAiButton } = useOrderStore()
   const timer = useRef(null)
 
-  const reset = () => {
+  const reset = (e) => {
+    if (e?.target?.closest('.ai-btn')) return
+
     setShowAiButton(false)
     clearTimeout(timer.current)
     timer.current = setTimeout(() => {
@@ -15,13 +17,13 @@ export const useInactivityTimer = (time = 20000) => {
 
   useEffect(() => {
     reset()
-    const events = ['click', 'touchstart']
 
+    const events = ['click', 'touchstart', 'mousemove']
     events.forEach((e) => window.addEventListener(e, reset))
 
     return () => {
       events.forEach((e) => window.removeEventListener(e, reset))
-      clearTimeout(timer.current)
+      if (timer.current) clearTimeout(timer.current)
     }
   }, [])
 }
